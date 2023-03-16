@@ -1,0 +1,84 @@
+name: main
+
+on: [push, pull_request]
+
+jobs:
+
+  php-cs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout repository
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: phpstan, php-cs-fixer:3
+
+      - name: Install
+        uses: "ramsey/composer-install@v2"
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
+
+      - name: Run PHP CS Fixer
+        run: php-cs-fixer fix --diff --dry-run
+
+      - name: Run PHPStan
+        run: phpstan analyse src tests example
+
+  test:
+    runs-on: ${{ matrix.operating-system }}
+    timeout-minutes: 3
+    needs:
+      - php-cs
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php-versions: ['8.0', '8.1', '8.2']
+        dependency-versions: ['lowest', 'locked']
+        include:
+          - operating-system: windows-latest
+            php-versions: '8.0'
+            dependency-versions: 'locked'
+          - operating-system: macos-latest
+            php-versions: '8.0'
+            dependency-versions: 'locked'
+    name: PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }} with ${{ matrix.dependency-versions }} versions of Composer dependencies
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          extensions: ffi
+          tools: protoc
+          php-version: ${{ matrix.php-versions }}
+          coverage: pcov
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: ${{ matrix.dependency-versions }}
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
+
+      - name: Composer generate library
+        run: composer gen-lib
+
+      - name: Test & Generate Code Coverage
+        run: composer test
+        env:
+          PACT_LOGLEVEL: ${{ vars.PACT_LOGLEVEL }}
+
+      - name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          composer global require php-coveralls/php-coveralls
+          php-coveralls --coverage_clover=clover.xml -v
+        if: matrix.php-versions == '8.2'

@@ -1,0 +1,82 @@
+{
+    "name": "tienvx/pact-php-protobuf",
+    "description": "Protobuf Plugin For Pact PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tienvx\\PactPhpProtobuf\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tienvx\\PactPhpProtobuf\\Tests\\": "tests/",
+            "App\\Consumer\\": "example/consumer/src",
+            "App\\Consumer\\Tests\\": "example/consumer/tests",
+            "App\\Provider\\": "example/provider/src",
+            "App\\Provider\\Tests\\": "example/provider/tests",
+            "": "example/library/src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tien",
+            "email": "tien.xuan.vo@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "pact-foundation/pact-php": "dev-all as 9.0.0",
+        "tienvx/pact-php-plugin": "dev-main as 1.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "symfony/http-client": "^5.4|^6.0",
+        "symfony/process": "^5.4|^6.0",
+        "slim/slim": "^4.11",
+        "slim/psr7": "^1.6",
+        "google/protobuf": "^3.22"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/tienvx/pact-php.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/tienvx/pact-php-plugin.git"
+        }
+    ],
+    "scripts": {
+        "test": [
+            "php -r \"array_map('unlink', glob('./example/consumer/tests/Contract/pacts/*.json'));\"",
+            "phpunit"
+        ],
+        "gen-lib": "protoc --php_out=example/library/src example/library/proto/area_calculator.proto"
+    },
+    "extra": {
+        "downloads": {
+            "pact-protobuf-plugin-metadata": {
+                "version": "0.1.17",
+                "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-plugin.json",
+                "path": "bin/pact-plugins/protobuf/pact-plugin.json"
+            },
+            "pact-protobuf-plugin": {
+                "version": "0.1.17",
+                "variables": {
+                    "{$os}": "PHP_OS === 'Darwin' ? 'osx' : strtolower(PHP_OS_FAMILY)",
+                    "{$architecture}": "in_array(php_uname('m'), ['arm64', 'aarch64']) ? 'aarch64' : 'x86_64'",
+                    "{$extension}": "PHP_OS_FAMILY === 'Windows' ? 'exe.gz' : 'gz'"
+                },
+                "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-protobuf-plugin-{$os}-{$architecture}.{$extension}",
+                "path": "bin/pact-plugins/protobuf/pact-protobuf-plugin",
+                "executable": true
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "tienvx/composer-downloads-plugin": true
+        }
+    }
+}
