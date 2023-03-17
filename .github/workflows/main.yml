@@ -15,12 +15,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          tools: phpstan, php-cs-fixer:3
+          tools: phpstan, php-cs-fixer:3, protoc
 
       - name: Install
         uses: "ramsey/composer-install@v2"
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
+
+      - name: Composer generate library
+        run: composer gen-lib
 
       - name: Run PHP CS Fixer
         run: php-cs-fixer fix --diff --dry-run

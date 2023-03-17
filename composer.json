@@ -57,12 +57,12 @@
     "extra": {
         "downloads": {
             "pact-protobuf-plugin-metadata": {
-                "version": "0.1.17",
+                "version": "0.2.0",
                 "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-plugin.json",
                 "path": "bin/pact-plugins/protobuf/pact-plugin.json"
             },
             "pact-protobuf-plugin": {
-                "version": "0.1.17",
+                "version": "0.2.0",
                 "variables": {
                     "{$os}": "PHP_OS === 'Darwin' ? 'osx' : strtolower(PHP_OS_FAMILY)",
                     "{$architecture}": "in_array(php_uname('m'), ['arm64', 'aarch64']) ? 'aarch64' : 'x86_64'",
