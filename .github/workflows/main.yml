@@ -18,9 +18,7 @@ jobs:
           tools: phpstan, php-cs-fixer:3
 
       - name: Install
-        uses: "ramsey/composer-install@v2"
-        env:
-          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
+        run: composer install
 
       - name: Run PHP CS Fixer
         run: php-cs-fixer fix --diff --dry-run
