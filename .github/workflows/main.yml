@@ -18,7 +18,9 @@ jobs:
           tools: phpstan, php-cs-fixer:3
 
       - name: Install
-        run: composer install
+        run: |
+          composer config github-oauth.github.com ${{ secrets.COMPOSER_AUTH }}
+          composer install
 
       - name: Run PHP CS Fixer
         run: php-cs-fixer fix --diff --dry-run
