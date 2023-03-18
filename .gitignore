@@ -7,3 +7,5 @@
 /.phpunit.result.cache
 /clover.xml
 /coveralls-upload.json
+protoc-gen-php-grpc
+example/provider/rr

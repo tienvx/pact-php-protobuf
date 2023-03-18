@@ -30,12 +30,15 @@
         "tienvx/pact-php-plugin": "dev-main as 1.0.0"
     },
     "require-dev": {
+        "ext-grpc": "*",
         "phpunit/phpunit": "^9.6",
         "symfony/http-client": "^5.4|^6.0",
         "symfony/process": "^5.4|^6.0",
         "slim/slim": "^4.11",
         "slim/psr7": "^1.6",
-        "google/protobuf": "^3.22"
+        "google/protobuf": "^3.22",
+        "spiral/roadrunner-grpc": "^2.0",
+        "grpc/grpc": "^1.52"
     },
     "repositories": [
         {
@@ -49,20 +52,27 @@
     ],
     "scripts": {
         "test": [
+            "vendor/bin/rr download-protoc-binary --no-interaction",
+            "vendor/bin/rr get-binary --location=example/provider/ --no-interaction",
+            "@gen-lib",
             "php -r \"array_map('unlink', glob('./example/consumer/tests/Contract/pacts/*.json'));\"",
             "phpunit"
         ],
-        "gen-lib": "protoc --php_out=example/library/src example/library/proto/area_calculator.proto"
+        "gen-lib": [
+            "protoc --php_out=example/library/src example/library/proto/area_calculator.proto",
+            "protoc --grpc_out=example/library/src --plugin=protoc-gen-grpc=$(which grpc_php_plugin) example/library/proto/area_calculator.proto",
+            "protoc --grpc_out=example/library/src --plugin=protoc-gen-grpc=protoc-gen-php-grpc example/library/proto/area_calculator.proto"
+        ]
     },
     "extra": {
         "downloads": {
             "pact-protobuf-plugin-metadata": {
-                "version": "0.2.4",
+                "version": "0.3.0",
                 "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-plugin.json",
                 "path": "bin/pact-plugins/protobuf/pact-plugin.json"
             },
             "pact-protobuf-plugin": {
-                "version": "0.2.4",
+                "version": "0.3.0",
                 "variables": {
                     "{$os}": "PHP_OS === 'Darwin' ? 'osx' : strtolower(PHP_OS_FAMILY)",
                     "{$architecture}": "in_array(php_uname('m'), ['arm64', 'aarch64']) ? 'aarch64' : 'x86_64'",
