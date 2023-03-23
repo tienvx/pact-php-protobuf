@@ -23,6 +23,9 @@ jobs:
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
+      - name: Install Binary
+        run: composer download-binaries
+
       - name: Composer generate library
         run: composer gen-lib
 
@@ -70,6 +73,9 @@ jobs:
           dependency-versions: ${{ matrix.dependency-versions }}
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
+
+      - name: Install Binaries
+        run: composer download-binaries
 
       - name: Composer generate library
         run: composer gen-lib
