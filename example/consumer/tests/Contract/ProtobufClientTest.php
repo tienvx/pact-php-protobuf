@@ -33,7 +33,7 @@ class ProtobufClientTest extends TestCase
                 'pact:proto' => $protoPath,
                 'pact:content-type' => 'application/grpc',
                 'pact:proto-service' => 'Calculator/calculate',
-        
+
                 'request' => [
                     'rectangle' => [
                         'length' => 'matching(number, 3)',
