@@ -14,6 +14,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
+          extensions: grpc
           php-version: '8.2'
           tools: phpstan, php-cs-fixer:3, protoc, grpc_php_plugin
 
@@ -56,6 +57,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
+          extensions: grpc
           tools: protoc, grpc_php_plugin
           php-version: ${{ matrix.php-versions }}
           coverage: pcov
