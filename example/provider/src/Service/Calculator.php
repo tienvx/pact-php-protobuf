@@ -3,7 +3,6 @@
 namespace App\Provider\Service;
 
 use Plugins\AreaResponse;
-use Plugins\CalculatorInterface;
 use Plugins\Circle;
 use Plugins\Parallelogram;
 use Plugins\Rectangle;

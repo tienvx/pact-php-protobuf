@@ -2,11 +2,9 @@
 
 namespace App\Consumer;
 
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Plugins\AreaResponse;
-use Plugins\CalculatorClient;
 use Plugins\ShapeMessage;
+use Grpc\ChannelCredentials;
 
 class ProtobufClient
 {
@@ -17,11 +15,9 @@ class ProtobufClient
     public function calculate(ShapeMessage $shapeMessage): AreaResponse
     {
         $client = new CalculatorClient($this->baseUrl, [
-            'credentials' => \Grpc\ChannelCredentials::createInsecure(),
+            'credentials' => ChannelCredentials::createInsecure(),
         ]);
 
-        [$response, $status] = $client->calculate($shapeMessage)->wait();
-
-        return $response;
+        return $client->calculate($shapeMessage);
     }
 }

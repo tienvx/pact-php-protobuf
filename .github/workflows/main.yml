@@ -16,7 +16,7 @@ jobs:
         with:
           extensions: grpc
           php-version: '8.2'
-          tools: phpstan, php-cs-fixer:3, protoc, grpc_php_plugin
+          tools: phpstan, php-cs-fixer:3, protoc
 
       - name: Install
         uses: "ramsey/composer-install@v2"
@@ -58,7 +58,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           extensions: grpc, sockets
-          tools: protoc, grpc_php_plugin
+          tools: protoc
           php-version: ${{ matrix.php-versions }}
           coverage: pcov
         env:

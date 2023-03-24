@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Sample GRPC PHP server.
- */
-
 use App\Provider\Service\Calculator;
-use Plugins\CalculatorInterface;
+use App\Provider\Service\CalculatorInterface;
 use Spiral\RoadRunner\GRPC\Server;
 use Spiral\RoadRunner\Worker;
 
