@@ -14,7 +14,7 @@ class PactVerifyTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->process = new Process([ __DIR__ . '/../../rr', 'serve', '-w', 'example/provider/']);
+        $this->process = new Process([ __DIR__ . '/../../bin/roadrunner/rr', 'serve', '-w', 'example/provider/']);
 
         $this->process->start();
         $this->process->waitUntil(function (string $type, string $output): bool {

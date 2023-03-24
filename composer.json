@@ -55,9 +55,6 @@
             "php -r \"array_map('unlink', glob('./example/consumer/tests/Contract/pacts/*.json'));\"",
             "phpunit"
         ],
-        "download-binaries": [
-            "vendor/bin/rr get-binary --location=example/provider/ --no-interaction"
-        ],
         "gen-lib": [
             "protoc --php_out=example/library/src example/library/proto/area_calculator.proto"
         ]

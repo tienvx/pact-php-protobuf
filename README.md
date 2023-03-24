@@ -13,7 +13,7 @@ composer require tienvx/pact-php-protobuf
 
 ```shell
 composer install
-composer download-binaries
+composer install -d example/provider
 composer gen-lib
 composer test
 ```
