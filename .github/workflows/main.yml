@@ -23,7 +23,7 @@ jobs:
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
-      - name: Composer generate library
+      - name: Generate Library
         run: composer gen-lib
 
       - name: Run PHP CS Fixer
@@ -74,7 +74,7 @@ jobs:
       - name: Install Roadrunner Binary
         run: composer install -d example/provider
 
-      - name: Composer generate library
+      - name: Generate Library
         run: composer gen-lib
 
       - name: Test & Generate Code Coverage
