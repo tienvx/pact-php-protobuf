@@ -9,7 +9,7 @@
         "markup": "```protobuf\nmessage AreaResponse {\n    float value = 1;\n}\n```\n",
         "markupType": "COMMON_MARK"
       },
-      "key": "dd9a26eabd3e41cf",
+      "key": "4e32b94081d848a0",
       "pending": false,
       "pluginConfiguration": {
         "protobuf": {
@@ -18,16 +18,11 @@
         }
       },
       "request": {
-        "body": {
+        "contents": {
           "content": "EgoNAABAQBUAAIBA",
           "contentType": "application/protobuf;message=ShapeMessage",
           "contentTypeHint": "BINARY",
           "encoded": "base64"
-        },
-        "headers": {
-          "content-type": [
-            "application/protobuf"
-          ]
         },
         "matchingRules": {
           "body": {
@@ -49,44 +44,44 @@
             }
           }
         },
-        "method": "POST",
-        "path": "/calculate"
+        "metadata": {
+          "contentType": "application/protobuf;message=ShapeMessage"
+        }
       },
-      "response": {
-        "body": {
-          "content": "DQAAQEE=",
-          "contentType": "application/protobuf;message=AreaResponse",
-          "contentTypeHint": "BINARY",
-          "encoded": "base64"
-        },
-        "headers": {
-          "content-type": [
-            "application/protobuf"
-          ]
-        },
-        "matchingRules": {
-          "body": {
-            "$.value": {
-              "combine": "AND",
-              "matchers": [
-                {
-                  "match": "number"
-                }
-              ]
+      "response": [
+        {
+          "contents": {
+            "content": "DQAAQEE=",
+            "contentType": "application/protobuf;message=AreaResponse",
+            "contentTypeHint": "BINARY",
+            "encoded": "base64"
+          },
+          "matchingRules": {
+            "body": {
+              "$.value": {
+                "combine": "AND",
+                "matchers": [
+                  {
+                    "match": "number"
+                  }
+                ]
+              }
             }
+          },
+          "metadata": {
+            "contentType": "application/protobuf;message=AreaResponse"
           }
-        },
-        "status": 200
-      },
-      "transport": "http",
-      "type": "Synchronous/HTTP"
+        }
+      ],
+      "transport": "grpc",
+      "type": "Synchronous/Messages"
     }
   ],
   "metadata": {
     "pactRust": {
-      "ffi": "0.3.14",
-      "mockserver": "0.9.5",
-      "models": "1.0.0"
+      "ffi": "0.4.1",
+      "mockserver": "1.0.0",
+      "models": "1.0.4"
     },
     "pactSpecification": {
       "version": "4.0"
@@ -100,7 +95,7 @@
           }
         },
         "name": "protobuf",
-        "version": "0.1.16"
+        "version": "0.3.0"
       }
     ]
   },

@@ -14,6 +14,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
+          extensions: grpc
           php-version: '8.2'
           tools: phpstan, php-cs-fixer:3, protoc
 
@@ -22,7 +23,7 @@ jobs:
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
-      - name: Composer generate library
+      - name: Generate Library
         run: composer gen-lib
 
       - name: Run PHP CS Fixer
@@ -33,7 +34,7 @@ jobs:
 
   test:
     runs-on: ${{ matrix.operating-system }}
-    timeout-minutes: 3
+    timeout-minutes: 5
     needs:
       - php-cs
     strategy:
@@ -53,7 +54,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          extensions: ffi
+          extensions: ffi, grpc, sockets
           tools: protoc
           php-version: ${{ matrix.php-versions }}
           coverage: pcov
@@ -70,7 +71,10 @@ jobs:
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
-      - name: Composer generate library
+      - name: Install Roadrunner Binary
+        run: composer install -d example/provider
+
+      - name: Generate Library
         run: composer gen-lib
 
       - name: Test & Generate Code Coverage

@@ -3,7 +3,6 @@
 namespace App\Provider\Service;
 
 use Plugins\AreaResponse;
-use Plugins\CalculatorInterface;
 use Plugins\Circle;
 use Plugins\Parallelogram;
 use Plugins\Rectangle;
@@ -11,10 +10,11 @@ use Plugins\ShapeMessage;
 use Plugins\Square;
 use Plugins\Triangle;
 use Exception;
+use Spiral\RoadRunner\GRPC\ContextInterface;
 
 class Calculator implements CalculatorInterface
 {
-    public function calculate(ShapeMessage $request): AreaResponse
+    public function calculate(ContextInterface $ctx, ShapeMessage $request): AreaResponse
     {
         switch ($request->getShape()) {
             case 'square':

@@ -9,6 +9,15 @@ It allow testing protobuf interactions.
 composer require tienvx/pact-php-protobuf
 ```
 
+## Test
+
+```shell
+composer install
+composer install -d example/provider
+composer gen-lib
+composer test
+```
+
 ## Documentation
 
 TBD
