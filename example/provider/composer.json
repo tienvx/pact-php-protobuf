@@ -13,10 +13,7 @@
                     "{$extension}": "(PHP_OS_FAMILY === 'Windows' || (PHP_OS_FAMILY === 'Darwin' && php_uname('m') === 'x86_64')) ? 'zip' : 'tar.gz'"
                 },
                 "url": "https://github.com/roadrunner-server/roadrunner/releases/download/v{$version}/roadrunner-{$version}-{$os}-{$architecture}.{$extension}",
-                "path": "bin/roadrunner",
-                "executable": [
-                    "bin/roadrunner/rr"
-                ]
+                "path": "bin/roadrunner"
             }
         }
     },
