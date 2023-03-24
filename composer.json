@@ -36,7 +36,8 @@
         "slim/slim": "^4.11",
         "slim/psr7": "^1.6",
         "spiral/roadrunner-grpc": "^2.0",
-        "grpc/grpc": "^1.52"
+        "grpc/grpc": "^1.52",
+        "spiral/roadrunner-cli": "^2.4"
     },
     "repositories": [
         {
