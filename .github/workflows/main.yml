@@ -57,7 +57,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          extensions: grpc
+          extensions: grpc, sockets
           tools: protoc, grpc_php_plugin
           php-version: ${{ matrix.php-versions }}
           coverage: pcov
