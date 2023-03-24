@@ -30,13 +30,11 @@
         "tienvx/pact-php-plugin": "dev-main as 1.0.0"
     },
     "require-dev": {
-        "ext-grpc": "*",
         "phpunit/phpunit": "^9.6",
         "symfony/http-client": "^5.4|^6.0",
         "symfony/process": "^5.4|^6.0",
         "slim/slim": "^4.11",
         "slim/psr7": "^1.6",
-        "google/protobuf": "^3.22",
         "spiral/roadrunner-grpc": "^2.0",
         "grpc/grpc": "^1.52"
     },
