@@ -1,0 +1,10 @@
+parameters:
+    level: 5
+    paths:
+        - src
+        - tests
+        - example
+    excludePaths:
+        - example/sync-message/provider/vendor/
+        - example/sync-message/library
+        - example/async-message/library

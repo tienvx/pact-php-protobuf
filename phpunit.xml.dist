@@ -9,11 +9,17 @@
         <testsuite name="Unit">
             <directory>tests</directory>
         </testsuite>
-        <testsuite name="Example Consumer">
-            <directory>./example/consumer/tests/Contract</directory>
+        <testsuite name="Sync Message Example Consumer">
+            <directory>./example/sync-message/consumer/tests/Contract</directory>
         </testsuite>
-        <testsuite name="Example Provider">
-            <directory>./example/provider/tests/Contract</directory>
+        <testsuite name="Sync Message Example Provider">
+            <directory>./example/sync-message/provider/tests/Contract</directory>
+        </testsuite>
+        <testsuite name="Async Message Example Consumer">
+            <directory>./example/async-message/consumer/tests/Contract</directory>
+        </testsuite>
+        <testsuite name="Async Message Example Provider">
+            <directory>./example/async-message/provider/tests/Contract</directory>
         </testsuite>
     </testsuites>
 

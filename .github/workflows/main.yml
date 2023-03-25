@@ -30,7 +30,7 @@ jobs:
         run: php-cs-fixer fix --diff --dry-run
 
       - name: Run PHPStan
-        run: phpstan analyse src tests example
+        run: phpstan
 
   test:
     runs-on: ${{ matrix.operating-system }}
@@ -72,7 +72,7 @@ jobs:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.COMPOSER_AUTH }}"}}'
 
       - name: Install Roadrunner Binary
-        run: composer install -d example/provider
+        run: composer install -d example/sync-message/provider
 
       - name: Generate Library
         run: composer gen-lib
