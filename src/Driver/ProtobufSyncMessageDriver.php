@@ -29,6 +29,7 @@ class ProtobufSyncMessageDriver extends AbstractMessageDriver implements SyncMes
 
     protected function getMockServerConfig(): MockServerConfigInterface
     {
+        /** @phpstan-ignore-next-line */
         return $this->config;
     }
 
@@ -63,6 +64,7 @@ class ProtobufSyncMessageDriver extends AbstractMessageDriver implements SyncMes
 
     protected function newInteraction(string $description): self
     {
+        /** @phpstan-ignore-next-line */
         $this->interactionId = $this->ffi->pactffi_new_sync_message_interaction($this->pactId, $description);
 
         return $this;

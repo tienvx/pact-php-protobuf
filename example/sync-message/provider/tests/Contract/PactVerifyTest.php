@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Contract;
+namespace App\SyncMessage\Tests\Contract;
 
 use PhpPact\Standalone\ProviderVerifier\Model\Config\ProviderTransport;
 use PhpPact\Standalone\ProviderVerifier\Model\VerifierConfig;
@@ -14,7 +14,7 @@ class PactVerifyTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->process = new Process([ __DIR__ . '/../../bin/roadrunner/rr', 'serve', '-w', 'example/provider/']);
+        $this->process = new Process([ __DIR__ . '/../../bin/roadrunner/rr', 'serve', '-w', 'example/sync-message/provider/']);
 
         $this->process->start();
         $this->process->waitUntil(function (string $type, string $output): bool {

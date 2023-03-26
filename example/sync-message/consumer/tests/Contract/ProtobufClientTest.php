@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Consumer\Tests;
+namespace App\SyncMessage\Consumer\Tests;
 
-use App\Consumer\ProtobufClient;
+use App\SyncMessage\Consumer\ProtobufClient;
 use PhpPact\Standalone\MockService\MockServerConfig;
 use PHPUnit\Framework\TestCase;
 use Plugins\Rectangle;

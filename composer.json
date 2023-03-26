@@ -11,11 +11,16 @@
     "autoload-dev": {
         "psr-4": {
             "Tienvx\\PactPhpProtobuf\\Tests\\": "tests/",
-            "App\\Consumer\\": "example/consumer/src",
-            "App\\Consumer\\Tests\\": "example/consumer/tests",
-            "App\\Provider\\": "example/provider/src",
-            "App\\Provider\\Tests\\": "example/provider/tests",
-            "": "example/library/src"
+            "App\\SyncMessage\\Consumer\\": "example/sync-message/consumer/src",
+            "App\\SyncMessage\\Consumer\\Tests\\": "example/sync-message/consumer/tests",
+            "App\\SyncMessage\\Provider\\": "example/sync-message/provider/src",
+            "App\\SyncMessage\\Provider\\Tests\\": "example/sync-message/provider/tests",
+            "": [
+                "example/sync-message/library/src",
+                "example/async-message/library/src"
+            ],
+            "App\\AsyncMessage\\Consumer\\": "example/async-message/consumer/src",
+            "App\\AsyncMessage\\Consumer\\Tests\\": "example/async-message/consumer/tests"
         }
     },
     "authors": [
@@ -32,7 +37,6 @@
     "require-dev": {
         "ext-grpc": "*",
         "phpunit/phpunit": "^9.6",
-        "symfony/http-client": "^5.4|^6.0",
         "symfony/process": "^5.4|^6.0",
         "slim/slim": "^4.11",
         "slim/psr7": "^1.6",
@@ -51,11 +55,16 @@
     ],
     "scripts": {
         "test": [
-            "php -r \"array_map('unlink', glob('./example/consumer/tests/Contract/pacts/*.json'));\"",
+            "@clean-pacts",
             "phpunit"
         ],
+        "clean-pacts": [
+            "php -r \"array_map('unlink', glob('./example/sync-message/consumer/tests/Contract/pacts/*.json'));\"",
+            "php -r \"array_map('unlink', glob('./example/async-message/consumer/tests/Contract/pacts/*.json'));\""
+        ],
         "gen-lib": [
-            "protoc --php_out=example/library/src example/library/proto/area_calculator.proto"
+            "protoc --php_out=example/sync-message/library/src example/sync-message/library/proto/area_calculator.proto",
+            "protoc --php_out=example/async-message/library/src example/async-message/library/proto/say_hello.proto"
         ]
     },
     "extra": {

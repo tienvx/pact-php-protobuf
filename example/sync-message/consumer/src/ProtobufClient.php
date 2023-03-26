@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Consumer;
+namespace App\SyncMessage\Consumer;
 
 use Plugins\AreaResponse;
 use Plugins\ShapeMessage;
