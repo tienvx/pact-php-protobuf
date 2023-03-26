@@ -56,8 +56,12 @@
     ],
     "scripts": {
         "test": [
-            "php -r \"array_map('unlink', glob('./example/sync-message/consumer/tests/Contract/pacts/*.json'));\"",
+            "@clean-pacts",
             "phpunit"
+        ],
+        "clean-pacts": [
+            "php -r \"array_map('unlink', glob('./example/sync-message/consumer/tests/Contract/pacts/*.json'));\"",
+            "php -r \"array_map('unlink', glob('./example/async-message/consumer/tests/Contract/pacts/*.json'));\""
         ],
         "gen-lib": [
             "protoc --php_out=example/sync-message/library/src example/sync-message/library/proto/area_calculator.proto",
