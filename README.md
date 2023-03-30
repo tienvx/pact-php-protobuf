@@ -20,7 +20,15 @@ composer test
 
 ## Documentation
 
-TBD
+### Async Message
+
+[Consumer Example](./example/async-message/consumer/tests/Contract/PersonMessageHandlerTest.php)
+[Provider Example](./example/async-message/provider/tests/Contract/PactVerifyTest.php)
+
+### Sync Message
+
+[Consumer Example](./example/sync-message/consumer/tests/Contract/ProtobufClientTest.php)
+[Provider Example](./example/sync-message/provider/tests/Contract/PactVerifyTest.php)
 
 ## License
 

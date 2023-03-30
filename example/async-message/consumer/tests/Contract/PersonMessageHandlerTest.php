@@ -62,7 +62,6 @@ class PersonMessageHandlerTest extends TestCase
             $person = new Person();
             $decoded = base64_decode($message->contents->content);
             $person->mergeFromString($decoded);
-            //$person->mergeFromJsonString(\json_encode($message->contents));
             $handler = new PersonMessageHandler($this->service);
             $handler($person);
         });

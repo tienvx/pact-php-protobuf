@@ -1,7 +1,7 @@
 {
     "name": "tienvx/pact-php-protobuf",
     "description": "Protobuf Plugin For Pact PHP",
-    "type": "library",
+    "type": "pact-plugin",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -32,7 +32,8 @@
     "require": {
         "php": ">=8.0",
         "pact-foundation/pact-php": "dev-all as 9.0.0",
-        "tienvx/pact-php-plugin": "dev-main as 1.0.0"
+        "tienvx/pact-php-plugin": "dev-main as 1.0.0",
+        "tienvx/pact-plugin-install": "dev-main as 1.0.0"
     },
     "require-dev": {
         "ext-grpc": "*",
@@ -51,6 +52,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/tienvx/pact-php-plugin.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/tienvx/pact-plugin-install.git"
         }
     ],
     "scripts": {
@@ -89,7 +94,8 @@
     },
     "config": {
         "allow-plugins": {
-            "tienvx/composer-downloads-plugin": true
+            "tienvx/composer-downloads-plugin": true,
+            "tienvx/pact-plugin-install": true
         }
     }
 }
