@@ -34,7 +34,7 @@ $app->post('/', function (Request $request, Response $response) {
     ;
 });
 
-$app->post('/change-state', function (Request $request, Response $response) {
+$app->post('/pact-change-state', function (Request $request, Response $response) {
     $body = $request->getParsedBody();
     $response->getBody()->write(sprintf('State changed: %s', \json_encode([
         'action' => $body['action'],

@@ -7,8 +7,7 @@ use PhpPact\Standalone\MockService\MockServerConfig;
 use PHPUnit\Framework\TestCase;
 use Plugins\Rectangle;
 use Plugins\ShapeMessage;
-use Tienvx\PactPhpPlugin\SyncMessageBuilder;
-use Tienvx\PactPhpProtobuf\Driver\ProtobufSyncMessageDriver;
+use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufSyncMessageBuilderFactory;
 
 class ProtobufClientTest extends TestCase
 {
@@ -25,7 +24,7 @@ class ProtobufClientTest extends TestCase
             $config->setLogLevel($logLevel);
         }
         $config->setHost('127.0.0.1');
-        $builder = new SyncMessageBuilder(new ProtobufSyncMessageDriver($config));
+        $builder = ProtobufSyncMessageBuilderFactory::create($config);
         $builder
             ->expectsToReceive('request for calculate shape area')
             ->withMetadata([])

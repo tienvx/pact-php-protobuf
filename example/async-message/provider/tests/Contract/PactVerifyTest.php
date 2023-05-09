@@ -41,7 +41,7 @@ class PactVerifyTest extends TestCase
             ->setHost('localhost')
             ->setPort($this->port);
         $config->getProviderState()
-            ->setStateChangeUrl(new Uri("http://localhost:{$this->port}/change-state"))
+            ->setStateChangeUrl(new Uri("http://localhost:{$this->port}/pact-change-state"))
             ->setStateChangeTeardown(true)
             ->setStateChangeAsBody(true)
         ;
