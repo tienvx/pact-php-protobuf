@@ -8,8 +8,7 @@ use Library\Person;
 use PhpPact\Standalone\PactMessage\PactMessageConfig;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Tienvx\PactPhpPlugin\MessageBuilder;
-use Tienvx\PactPhpProtobuf\Driver\ProtobufMessageDriver;
+use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufMessageBuilderFactory;
 
 class PersonMessageHandlerTest extends TestCase
 {
@@ -40,7 +39,7 @@ class PersonMessageHandlerTest extends TestCase
             $config->setLogLevel($logLevel);
         }
 
-        $builder = new MessageBuilder(new ProtobufMessageDriver($config));
+        $builder = ProtobufMessageBuilderFactory::create($config);
 
         $builder
             ->given('A person with fixed id exists', ['id' => $id, 'reuse' => '0'])
