@@ -11,7 +11,7 @@ use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufSyncMessageBuilderFactory;
 
 class ProtobufClientTest extends TestCase
 {
-    public function testCalculateArea()
+    public function testCalculateArea(): void
     {
         $protoPath = __DIR__ . '/../../../library/proto/area_calculator.proto';
 

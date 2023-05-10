@@ -12,23 +12,23 @@ use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufMessageBuilderFactory;
 
 class PersonMessageHandlerTest extends TestCase
 {
-    private SayHelloService|MockObject $service;
+    private SayHelloService $service;
+    private string $given = 'Given';
+    private string $surname = 'Surname';
 
     protected function setUp(): void
     {
-        $this->service = $this->createMock(SayHelloService::class);
+        $service = $this->createMock(SayHelloService::class);
+        $service
+            ->expects($this->once())
+            ->method('sayHello')
+            ->with($this->given, $this->surname);
+        $this->service = $service;
     }
 
     public function testInvoke(): void
     {
         $id = 'd1f077b5-0f91-40aa-b8f9-568b50ee4dd9';
-        $given = 'Given';
-        $surname = 'Surname';
-
-        $this->service
-            ->expects($this->once())
-            ->method('sayHello')
-            ->with($given, $surname);
 
         $config = (new PactMessageConfig())
             ->setConsumer('protobufMessageConsumer')
@@ -50,8 +50,8 @@ class PersonMessageHandlerTest extends TestCase
                 'pact:content-type' => 'application/protobuf',
                 'id' => "matching(regex, '^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$', '{$id}')",
                 'name' => [
-                    'given' => "matching(type, '{$given}')",
-                    'surname' => "matching(type, '{$surname}')"
+                    'given' => "matching(type, '{$this->given}')",
+                    'surname' => "matching(type, '{$this->surname}')"
                 ],
             ])
             ->withContentType('application/protobuf');

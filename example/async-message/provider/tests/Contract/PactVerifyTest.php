@@ -24,7 +24,7 @@ class PactVerifyTest extends TestCase
                 $this->port = (int)$matches[1];
             }
 
-            return $result;
+            return (bool) $result;
         });
     }
 
@@ -33,7 +33,7 @@ class PactVerifyTest extends TestCase
         $this->process->stop();
     }
 
-    public function testPactVerifyConsumer()
+    public function testPactVerifyConsumer(): void
     {
         $config = new VerifierConfig();
         $config->getProviderInfo()

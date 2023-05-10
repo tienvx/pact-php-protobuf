@@ -45,6 +45,11 @@ class ProtobufPactDriverTest extends TestCase
         $this->config->setPactSpecificationVersion('4.0.0');
         \putenv('PACT_PLUGIN_DIR=/home');
         $this->pactDriver->setUp();
-        $this->assertSame(realpath(__DIR__.'/../../../../bin/pact-plugins'), realpath(\getenv('PACT_PLUGIN_DIR')));
+        $var = \getenv('PACT_PLUGIN_DIR');
+        if ($var !== false) {
+            $this->assertSame(realpath(__DIR__.'/../../../../bin/pact-plugins'), realpath($var));
+        } else {
+            $this->fail('Environment variable PACT_PLUGIN_DIR should be set');
+        }
     }
 }
