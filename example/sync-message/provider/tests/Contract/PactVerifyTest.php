@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SyncMessage\Tests\Contract;
+namespace App\SyncMessage\Provider\Tests\Contract;
 
 use PhpPact\Standalone\ProviderVerifier\Model\Config\ProviderTransport;
 use PhpPact\Standalone\ProviderVerifier\Model\VerifierConfig;

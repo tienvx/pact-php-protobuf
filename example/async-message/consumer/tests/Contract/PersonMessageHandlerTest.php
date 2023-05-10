@@ -1,12 +1,11 @@
 <?php
 
-namespace App\AsyncMessage\Consumer\Tests;
+namespace App\AsyncMessage\Consumer\Tests\Contract;
 
 use App\AsyncMessage\Consumer\MessageHandler\PersonMessageHandler;
 use App\AsyncMessage\Consumer\Service\SayHelloService;
 use Library\Person;
 use PhpPact\Standalone\PactMessage\PactMessageConfig;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufMessageBuilderFactory;
 

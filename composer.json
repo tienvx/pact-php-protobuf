@@ -20,7 +20,9 @@
                 "example/async-message/library/src"
             ],
             "App\\AsyncMessage\\Consumer\\": "example/async-message/consumer/src",
-            "App\\AsyncMessage\\Consumer\\Tests\\": "example/async-message/consumer/tests"
+            "App\\AsyncMessage\\Consumer\\Tests\\": "example/async-message/consumer/tests",
+            "App\\AsyncMessage\\Provider\\": "example/async-message/provider/src",
+            "App\\AsyncMessage\\Provider\\Tests\\": "example/async-message/provider/tests"
         }
     },
     "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SyncMessage\Consumer\Tests;
+namespace App\SyncMessage\Consumer\Tests\Contract;
 
 use App\SyncMessage\Consumer\ProtobufClient;
 use PhpPact\Standalone\MockService\MockServerConfig;
