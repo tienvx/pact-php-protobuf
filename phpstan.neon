@@ -1,5 +1,5 @@
 parameters:
-    level: 5
+    level: 7
     paths:
         - src
         - tests
@@ -7,4 +7,6 @@ parameters:
     excludePaths:
         - example/sync-message/provider/vendor/
         - example/sync-message/library
+        - example/sync-message/consumer/src/CalculatorClient.php
         - example/async-message/library
+        - example/async-message/provider/public

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SyncMessage\Consumer\Tests;
+namespace App\SyncMessage\Consumer\Tests\Contract;
 
 use App\SyncMessage\Consumer\ProtobufClient;
 use PhpPact\Standalone\MockService\MockServerConfig;
@@ -11,7 +11,7 @@ use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufSyncMessageBuilderFactory;
 
 class ProtobufClientTest extends TestCase
 {
-    public function testCalculateArea()
+    public function testCalculateArea(): void
     {
         $protoPath = __DIR__ . '/../../../library/proto/area_calculator.proto';
 
@@ -43,8 +43,8 @@ class ProtobufClientTest extends TestCase
                     'value' => 'matching(number, 12)',
                 ]
             ])
-            ->withContentType('application/grpc')
-            ->registerMessage();
+            ->withContentType('application/grpc');
+        $builder->registerMessage();
 
         $service = new ProtobufClient("{$config->getHost()}:{$config->getPort()}");
         $rectangle = (new Rectangle())->setLength(3)->setWidth(4);

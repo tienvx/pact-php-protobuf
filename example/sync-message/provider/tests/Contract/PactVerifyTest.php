@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SyncMessage\Tests\Contract;
+namespace App\SyncMessage\Provider\Tests\Contract;
 
 use PhpPact\Standalone\ProviderVerifier\Model\Config\ProviderTransport;
 use PhpPact\Standalone\ProviderVerifier\Model\VerifierConfig;
@@ -18,9 +18,7 @@ class PactVerifyTest extends TestCase
         $this->process->setTimeout(120);
 
         $this->process->start();
-        $this->process->waitUntil(function (string $type, string $output): bool {
-            return str_contains($output, 'grpc server was started');
-        });
+        $this->process->waitUntil(fn () => is_resource(@fsockopen('127.0.0.1', 9001)));
     }
 
     protected function tearDown(): void
@@ -28,7 +26,7 @@ class PactVerifyTest extends TestCase
         $this->process->stop();
     }
 
-    public function testPactVerifyConsumer()
+    public function testPactVerifyConsumer(): void
     {
         $config = new VerifierConfig();
         $config->getProviderInfo()
