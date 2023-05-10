@@ -18,9 +18,7 @@ class PactVerifyTest extends TestCase
         $this->process->setTimeout(120);
 
         $this->process->start();
-        $this->process->waitUntil(function (string $type, string $output): bool {
-            return str_contains($output, 'grpc server was started');
-        });
+        $this->process->waitUntil(fn () => is_resource(@fsockopen('127.0.0.1', 9001)));
     }
 
     protected function tearDown(): void
