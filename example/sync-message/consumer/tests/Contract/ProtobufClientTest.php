@@ -43,8 +43,8 @@ class ProtobufClientTest extends TestCase
                     'value' => 'matching(number, 12)',
                 ]
             ])
-            ->withContentType('application/grpc')
-            ->registerMessage();
+            ->withContentType('application/grpc');
+        $builder->registerMessage();
 
         $service = new ProtobufClient("{$config->getHost()}:{$config->getPort()}");
         $rectangle = (new Rectangle())->setLength(3)->setWidth(4);
