@@ -6,22 +6,22 @@ use PhpPact\Consumer\Registry\Pact\PactRegistry;
 use PhpPact\FFI\Client;
 use PhpPact\Standalone\MockService\MockServerConfigInterface;
 use Tienvx\PactPhpPlugin\Consumer\Driver\Interaction\SyncMessageDriver;
-use Tienvx\PactPhpPlugin\Consumer\SyncMessageBuilder;
+use Tienvx\PactPhpPlugin\Consumer\Driver\Interaction\SyncMessageDriverInterface;
+use Tienvx\PactPhpPlugin\Consumer\Factory\SyncMessageDriverFactoryInterface;
 use Tienvx\PactPhpProtobuf\Consumer\Driver\Pact\ProtobufPactDriver;
 use Tienvx\PactPhpProtobuf\Consumer\Registry\Interaction\ProtobufSyncMessageRegistry;
 use Tienvx\PactPhpProtobuf\Consumer\Service\GrpcMockServer;
 
-class ProtobufSyncMessageBuilderFactory
+class ProtobufSyncMessageDriverFactory implements SyncMessageDriverFactoryInterface
 {
-    public static function create(MockServerConfigInterface $config): SyncMessageBuilder
+    public function create(MockServerConfigInterface $config): SyncMessageDriverInterface
     {
         $client = new Client();
         $pactRegistry = new PactRegistry($client);
         $pactDriver = new ProtobufPactDriver($client, $config, $pactRegistry);
         $grpcMockServer = new GrpcMockServer($client, $pactRegistry, $config);
         $syncMessageRegistry = new ProtobufSyncMessageRegistry($client, $pactRegistry);
-        $messageDriver = new SyncMessageDriver($pactDriver, $syncMessageRegistry, $grpcMockServer);
 
-        return new SyncMessageBuilder($messageDriver);
+        return new SyncMessageDriver($pactDriver, $syncMessageRegistry, $grpcMockServer);
     }
 }

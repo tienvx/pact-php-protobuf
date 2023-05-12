@@ -5,9 +5,10 @@ namespace App\AsyncMessage\Consumer\Tests\Contract;
 use App\AsyncMessage\Consumer\MessageHandler\PersonMessageHandler;
 use App\AsyncMessage\Consumer\Service\SayHelloService;
 use Library\Person;
+use PhpPact\Consumer\MessageBuilder;
 use PhpPact\Standalone\PactMessage\PactMessageConfig;
 use PHPUnit\Framework\TestCase;
-use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufMessageBuilderFactory;
+use Tienvx\PactPhpProtobuf\Consumer\Factory\ProtobufMessageDriverFactory;
 
 class PersonMessageHandlerTest extends TestCase
 {
@@ -38,7 +39,7 @@ class PersonMessageHandlerTest extends TestCase
             $config->setLogLevel($logLevel);
         }
 
-        $builder = ProtobufMessageBuilderFactory::create($config);
+        $builder = new MessageBuilder($config, new ProtobufMessageDriverFactory());
 
         $builder
             ->given('A person with fixed id exists', ['id' => $id, 'reuse' => '0'])
