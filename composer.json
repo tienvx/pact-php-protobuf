@@ -33,9 +33,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "pact-foundation/pact-php": "dev-all as 9.0.0",
-        "tienvx/pact-php-plugin": "dev-main as 1.0.0",
-        "tienvx/pact-plugin-install": "dev-main as 1.0.0"
+        "pact-foundation/pact-php": "10.0.0-alpha2",
+        "tienvx/pact-php-plugin": "dev-main as 1.0.0"
     },
     "require-dev": {
         "ext-grpc": "*",
@@ -49,15 +48,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/tienvx/pact-php.git"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/tienvx/pact-php-plugin.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/tienvx/pact-plugin-install.git"
         }
     ],
     "scripts": {
@@ -74,30 +65,9 @@
             "protoc --php_out=example/async-message/library/src example/async-message/library/proto/say_hello.proto"
         ]
     },
-    "extra": {
-        "downloads": {
-            "pact-protobuf-plugin-metadata": {
-                "version": "0.3.0",
-                "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-plugin.json",
-                "path": "bin/pact-plugins/protobuf/pact-plugin.json"
-            },
-            "pact-protobuf-plugin": {
-                "version": "0.3.0",
-                "variables": {
-                    "{$os}": "PHP_OS === 'Darwin' ? 'osx' : strtolower(PHP_OS_FAMILY)",
-                    "{$architecture}": "in_array(php_uname('m'), ['arm64', 'aarch64']) ? 'aarch64' : 'x86_64'",
-                    "{$extension}": "PHP_OS_FAMILY === 'Windows' ? 'exe.gz' : 'gz'"
-                },
-                "url": "https://github.com/pactflow/pact-protobuf-plugin/releases/download/v-{$version}/pact-protobuf-plugin-{$os}-{$architecture}.{$extension}",
-                "path": "bin/pact-plugins/protobuf/pact-protobuf-plugin",
-                "executable": true
-            }
-        }
-    },
     "config": {
         "allow-plugins": {
-            "tienvx/composer-downloads-plugin": true,
-            "tienvx/pact-plugin-install": true
+            "tienvx/composer-downloads-plugin": true
         }
     }
 }

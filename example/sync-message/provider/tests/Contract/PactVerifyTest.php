@@ -44,9 +44,6 @@ class PactVerifyTest extends TestCase
             $config->setLogLevel($logLevel);
         }
 
-        // Note: use /path/to/vendor/bin/pact-plugins in your project
-        $config->setPluginDir(__DIR__.'/../../../../../bin/pact-plugins');
-
         $verifier = new Verifier($config);
         $verifier->addDirectory(__DIR__.'/../../../broker/pacts');
 

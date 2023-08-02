@@ -10,9 +10,4 @@ class ProtobufPactDriver extends AbstractPluginPactDriver
     {
         return 'protobuf';
     }
-
-    protected function getPluginDir(): string
-    {
-        return __DIR__.'/../../../../bin/pact-plugins';
-    }
 }
