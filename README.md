@@ -9,6 +9,11 @@ It allow testing protobuf interactions.
 composer require tienvx/pact-php-protobuf
 ```
 
+### Pre-requisites
+
+- gRPC PHP extension. See [docs](https://cloud.google.com/php/grpc) for installation
+- Protobuf compiler (protoc). See [docs](https://grpc.io/docs/protoc-installation/) for installation
+
 ## Test
 
 ```shell
